@@ -27,20 +27,20 @@ export default function Header() {
       <div style={{
         maxWidth: "1200px",
         margin: "0 auto",
-        padding: "0 24px",
-        height: "72px",
+        padding: "0 40px",
+        height: "80px",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
       }}>
-        {/* Logo */}
+        {/* Logo — trimmed version for proper balance with nav */}
         <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
           <Image
-            src="/images/logo_red_bright.png"
+            src="/images/logo_red_trimmed.png"
             alt="Editorial Thinking COLLECTIVE"
-            width={200}
-            height={60}
-            style={{ objectFit: "contain", height: "44px", width: "auto" }}
+            width={240}
+            height={72}
+            style={{ objectFit: "contain", height: "40px", width: "auto" }}
             priority
           />
         </Link>

@@ -1,35 +1,21 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer style={{ background: "#134361", color: "#fff", padding: "48px 24px 32px" }}>
+    <footer style={{ background: "#134361", color: "#fff", padding: "48px 40px 32px" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "48px", marginBottom: "40px", justifyContent: "space-between" }}>
-          {/* Brand */}
+          {/* Brand — white logo */}
           <div style={{ flex: "1", minWidth: "240px" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
-                <div style={{ display: "flex", gap: "3px" }}>
-                  <div style={{ width: "16px", height: "3px", background: "#C1403D" }}></div>
-                  <div style={{ width: "16px", height: "3px", background: "#C1403D" }}></div>
-                </div>
-                <div style={{ display: "flex", gap: "3px" }}>
-                  <div style={{ width: "16px", height: "3px", background: "#C1403D" }}></div>
-                  <div style={{ width: "16px", height: "3px", background: "#C1403D" }}></div>
-                </div>
-                <div style={{ display: "flex", gap: "3px" }}>
-                  <div style={{ width: "16px", height: "3px", background: "#C1403D" }}></div>
-                  <div style={{ width: "16px", height: "3px", background: "#C1403D" }}></div>
-                </div>
-              </div>
-              <div>
-                <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "16px", fontWeight: 700, color: "#fff", lineHeight: 1.2 }}>
-                  Editorial Thinking
-                </div>
-                <div style={{ fontSize: "9px", letterSpacing: "0.15em", color: "rgba(255,255,255,0.6)", textTransform: "uppercase" }}>
-                  COLLECTIVE
-                </div>
-              </div>
+            <div style={{ marginBottom: "16px" }}>
+              <Image
+                src="/images/logo_white_trimmed.png"
+                alt="Editorial Thinking COLLECTIVE"
+                width={180}
+                height={54}
+                style={{ objectFit: "contain", height: "36px", width: "auto" }}
+              />
             </div>
             <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.7)", lineHeight: 1.8, maxWidth: "280px" }}>
               編集思考を学び、実践し、仲間と磨き合う場。あなたの中にある編集思考を解き放つ。
@@ -71,7 +57,7 @@ export default function Footer() {
 
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.15)", paddingTop: "24px", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "12px" }}>
           <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.5)" }}>
-            © 2025 Editorial Thinking Collective / EDITBRAIN Inc.
+            © 2026 Editorial Thinking Collective / EDITBRAIN Inc.
           </p>
           <div style={{ display: "flex", gap: "24px" }}>
             <Link href="/privacy" style={{ fontSize: "12px", color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>
