@@ -165,13 +165,10 @@ export default function AboutPage() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "160px 1fr", gap: "40px", alignItems: "start" }}>
             <div style={{ width: "160px", height: "160px", borderRadius: "50%", background: "#F2EDE4", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                {[0,1,2].map(i => (
-                  <div key={i} style={{ display: "flex", gap: "4px" }}>
-                    <div style={{ width: "24px", height: "5px", background: "#C1403D" }}></div>
-                    <div style={{ width: "24px", height: "5px", background: "#C1403D" }}></div>
-                  </div>
-                ))}
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px", alignItems: "flex-start" }}>
+                <div style={{ width: "56px", height: "7px", background: "#C1403D", borderRadius: "1px" }}></div>
+                <div style={{ width: "48px", height: "7px", background: "#C1403D", borderRadius: "1px" }}></div>
+                <div style={{ width: "36px", height: "7px", background: "#C1403D", borderRadius: "1px" }}></div>
               </div>
             </div>
             <div>
