@@ -61,23 +61,11 @@ export default async function HomePage() {
           </Link>
         </div>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <div style={{
-            width: "420px",
-            height: "420px",
-            borderRadius: "50%",
-            background: "#F2EDE4",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            overflow: "hidden",
-            boxShadow: "0 8px 40px rgba(0,0,0,0.08)",
-          }}>
-            <img
-              src="/images/hero_community_v5.png"
-              alt="編集思考イラスト"
-              style={{ width: "90%", height: "90%", objectFit: "contain" }}
-            />
-          </div>
+          <img
+            src="/images/hero_illustration.png"
+            alt="編集思考イラスト"
+            style={{ width: "100%", maxWidth: "460px", height: "auto", objectFit: "contain" }}
+          />
         </div>
       </section>
 

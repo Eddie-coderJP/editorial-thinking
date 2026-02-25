@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
@@ -33,29 +34,15 @@ export default function Header() {
         justifyContent: "space-between",
       }}>
         {/* Logo */}
-        <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px" }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
-            <div style={{ display: "flex", gap: "3px" }}>
-              <div style={{ width: "20px", height: "4px", background: "#C1403D" }}></div>
-              <div style={{ width: "20px", height: "4px", background: "#C1403D" }}></div>
-            </div>
-            <div style={{ display: "flex", gap: "3px" }}>
-              <div style={{ width: "20px", height: "4px", background: "#C1403D" }}></div>
-              <div style={{ width: "20px", height: "4px", background: "#C1403D" }}></div>
-            </div>
-            <div style={{ display: "flex", gap: "3px" }}>
-              <div style={{ width: "20px", height: "4px", background: "#C1403D" }}></div>
-              <div style={{ width: "20px", height: "4px", background: "#C1403D" }}></div>
-            </div>
-          </div>
-          <div>
-            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "18px", fontWeight: 700, color: "#1A1A1A", lineHeight: 1.2 }}>
-              Editorial Thinking
-            </div>
-            <div style={{ fontSize: "10px", letterSpacing: "0.15em", color: "#6B6B6B", textTransform: "uppercase" }}>
-              COLLECTIVE
-            </div>
-          </div>
+        <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+          <Image
+            src="/images/logo_red_bright.png"
+            alt="Editorial Thinking COLLECTIVE"
+            width={200}
+            height={60}
+            style={{ objectFit: "contain", height: "44px", width: "auto" }}
+            priority
+          />
         </Link>
 
         {/* Desktop Nav */}
