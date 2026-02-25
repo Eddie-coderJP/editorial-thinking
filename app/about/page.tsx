@@ -72,7 +72,8 @@ export default function AboutPage() {
           <p style={{ color: "var(--muted)", fontSize: "15px", marginBottom: "40px" }}>
             編集思考は、「まとめる・みがく・つなげる」という3つの編集力で構成されています。この3つを組み合わせることで、あなたの強みが武器に変わります。
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px" }}>
+          {/* スマホで縦並び */}
+          <div className="pillars-grid">
             {[
               {
                 en: "Organize",
@@ -119,39 +120,45 @@ export default function AboutPage() {
             <div style={{ width: "4px", height: "48px", background: "var(--accent)", flexShrink: 0, marginTop: "4px" }}></div>
             <div>
               <span style={{ fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--accent)", fontWeight: 700 }}>Framework</span>
-              <h2 style={{ fontFamily: "'Noto Serif JP', serif", fontSize: "28px", fontWeight: 700, marginTop: "8px" }}>編集思考の実践フレームワーク</h2>
+              {/* スマホで2行になるのでフォントサイズ縮小・行間調整 */}
+              <h2 className="framework-heading" style={{ fontFamily: "'Noto Serif JP', serif", fontWeight: 700, marginTop: "8px" }}>
+                編集思考の実践フレームワーク
+              </h2>
             </div>
           </div>
           <p style={{ color: "var(--muted)", fontSize: "15px", marginBottom: "32px" }}>
             編集思考は、以下の5つのステップで「強みを武器に変える」プロセスを設計します。
           </p>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px" }}>
-            <thead>
-              <tr style={{ background: "var(--footer)", color: "white" }}>
-                <th style={{ padding: "14px 20px", textAlign: "left", width: "60px" }}>Step</th>
-                <th style={{ padding: "14px 20px", textAlign: "left", width: "160px" }}>キーワード</th>
-                <th style={{ padding: "14px 20px", textAlign: "left" }}>内容</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                { step: "01", kw: "発掘", en: "Discover", desc: "自分の経験・知識・価値観を棚卸しし、強みの原石を見つける" },
-                { step: "02", kw: "整理", en: "Organize", desc: "バラバラな素材を構造化し、「伝えたいこと」の骨格をつくる" },
-                { step: "03", kw: "言語化", en: "Articulate", desc: "強みを読者に届く言葉・コンセプト・ストーリーに変換する" },
-                { step: "04", kw: "発信", en: "Publish", desc: "コラム・SNS・Kindle・コミュニティなど最適な媒体で届ける" },
-                { step: "05", kw: "循環", en: "Iterate", desc: "反応を受け取り、磨き直し、より深い価値を生み出し続ける" },
-              ].map((row, i) => (
-                <tr key={row.step} style={{ background: i % 2 === 0 ? "var(--white)" : "var(--bg)", borderBottom: "1px solid var(--border)" }}>
-                  <td style={{ padding: "16px 20px", fontWeight: 700, color: "var(--accent)", textAlign: "center" }}>{row.step}</td>
-                  <td style={{ padding: "16px 20px" }}>
-                    <span style={{ fontWeight: 700, marginRight: "8px" }}>{row.kw}</span>
-                    <span style={{ fontSize: "12px", color: "var(--muted)" }}>{row.en}</span>
-                  </td>
-                  <td style={{ padding: "16px 20px", color: "var(--muted)" }}>{row.desc}</td>
+          {/* スマホで横スクロール可能にする */}
+          <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+            <table style={{ width: "100%", minWidth: "480px", borderCollapse: "collapse", fontSize: "14px" }}>
+              <thead>
+                <tr style={{ background: "var(--footer)", color: "white" }}>
+                  <th style={{ padding: "14px 20px", textAlign: "left", width: "60px", whiteSpace: "nowrap" }}>Step</th>
+                  <th style={{ padding: "14px 20px", textAlign: "left", width: "140px", whiteSpace: "nowrap" }}>キーワード</th>
+                  <th style={{ padding: "14px 20px", textAlign: "left" }}>内容</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {[
+                  { step: "01", kw: "発掘", en: "Discover", desc: "自分の経験・知識・価値観を棚卸しし、強みの原石を見つける" },
+                  { step: "02", kw: "整理", en: "Organize", desc: "バラバラな素材を構造化し、「伝えたいこと」の骨格をつくる" },
+                  { step: "03", kw: "言語化", en: "Articulate", desc: "強みを読者に届く言葉・コンセプト・ストーリーに変換する" },
+                  { step: "04", kw: "発信", en: "Publish", desc: "コラム・SNS・Kindle・コミュニティなど最適な媒体で届ける" },
+                  { step: "05", kw: "循環", en: "Iterate", desc: "反応を受け取り、磨き直し、より深い価値を生み出し続ける" },
+                ].map((row, i) => (
+                  <tr key={row.step} style={{ background: i % 2 === 0 ? "var(--white)" : "var(--bg)", borderBottom: "1px solid var(--border)" }}>
+                    <td style={{ padding: "16px 20px", fontWeight: 700, color: "var(--accent)", textAlign: "center", whiteSpace: "nowrap" }}>{row.step}</td>
+                    <td style={{ padding: "16px 20px", whiteSpace: "nowrap" }}>
+                      <span style={{ fontWeight: 700, marginRight: "8px" }}>{row.kw}</span>
+                      <span style={{ fontSize: "12px", color: "var(--muted)" }}>{row.en}</span>
+                    </td>
+                    <td style={{ padding: "16px 20px", color: "var(--muted)" }}>{row.desc}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         {/* SECTION 4: About Eddie */}
@@ -160,11 +167,15 @@ export default function AboutPage() {
             <div style={{ width: "4px", height: "48px", background: "var(--accent)", flexShrink: 0, marginTop: "4px" }}></div>
             <div>
               <span style={{ fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--accent)", fontWeight: 700 }}>About the Founder</span>
-              <h2 style={{ fontFamily: "'Noto Serif JP', serif", fontSize: "28px", fontWeight: 700, marginTop: "8px" }}>UENO IKue（Eddie）について</h2>
+              {/* スマホで2行になるのでclampで縮小 */}
+              <h2 style={{ fontFamily: "'Noto Serif JP', serif", fontSize: "clamp(20px, 3vw, 28px)", fontWeight: 700, marginTop: "8px", lineHeight: 1.4 }}>
+                UENO IKue（Eddie）について
+              </h2>
             </div>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "160px 1fr", gap: "40px", alignItems: "start" }}>
-            <div style={{ width: "160px", height: "160px", borderRadius: "50%", background: "#F2EDE4", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          {/* スマホで縦並び */}
+          <div className="profile-grid">
+            <div style={{ width: "160px", height: "160px", borderRadius: "50%", background: "#F2EDE4", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", alignItems: "flex-start" }}>
                 <div style={{ width: "56px", height: "7px", background: "#C1403D", borderRadius: "1px" }}></div>
                 <div style={{ width: "48px", height: "7px", background: "#C1403D", borderRadius: "1px" }}></div>
@@ -196,7 +207,7 @@ export default function AboutPage() {
       </div>
 
       {/* CTA */}
-      <section style={{ background: "var(--footer)", color: "white", padding: "80px", textAlign: "center" }}>
+      <section style={{ background: "var(--footer)", color: "white", padding: "80px 40px", textAlign: "center" }}>
         <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: "16px" }}>Community</p>
         <h2 style={{ fontFamily: "'Noto Serif JP', serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 700, marginBottom: "20px", lineHeight: 1.5 }}>
           「じぶんを編集する学校」へ<br />ようこそ
@@ -214,10 +225,45 @@ export default function AboutPage() {
           fontSize: "16px",
           fontWeight: 700,
           textDecoration: "none",
+          whiteSpace: "nowrap",
         }}>
           LINEで無料登録する
         </a>
       </section>
+
+      <style>{`
+        /* 3カラム → スマホで縦並び */
+        .pillars-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+        }
+        /* プロフィール 2カラム → スマホで縦並び */
+        .profile-grid {
+          display: grid;
+          grid-template-columns: 160px 1fr;
+          gap: 40px;
+          align-items: start;
+        }
+        /* フレームワーク見出し */
+        .framework-heading {
+          font-size: 28px;
+          line-height: 1.3;
+        }
+        @media (max-width: 768px) {
+          .pillars-grid {
+            grid-template-columns: 1fr;
+          }
+          .profile-grid {
+            grid-template-columns: 1fr;
+            justify-items: center;
+          }
+          .framework-heading {
+            font-size: 20px;
+            line-height: 1.4;
+          }
+        }
+      `}</style>
     </>
   );
 }

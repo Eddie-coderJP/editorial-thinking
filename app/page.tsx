@@ -207,10 +207,10 @@ export default async function HomePage() {
       </section>
 
       {/* CTA */}
-      <section style={{ background: "var(--footer)", color: "white", padding: "80px", textAlign: "center" }} className="cta-section">
+      <section style={{ background: "var(--footer)", color: "white", padding: "80px 40px", textAlign: "center" }} className="cta-section">
         <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: "16px" }}>Community</p>
-        <h2 style={{ fontFamily: "'Noto Serif JP', serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 700, marginBottom: "20px", lineHeight: 1.5 }}>
-          「じぶんを編集する学校」へ<br />ようこそ
+        <h2 style={{ fontFamily: "'Noto Serif JP', serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 700, marginBottom: "20px", lineHeight: 1.5 }} className="cta-heading">
+          「じぶんを編集する学校」へようこそ
         </h2>
         <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.8)", lineHeight: 1.9, marginBottom: "36px" }}>
           まず10日間、無料のLINEステップ配信でお試しください。<br />
@@ -226,6 +226,7 @@ export default async function HomePage() {
           fontWeight: 700,
           textDecoration: "none",
           letterSpacing: "0.04em",
+          whiteSpace: "nowrap",
         }}>
           LINEで無料登録する
         </a>
@@ -244,6 +245,7 @@ export default async function HomePage() {
           .latest-header { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
           .profile-grid { grid-template-columns: 1fr !important; }
           .cta-section { padding: 48px 24px !important; }
+          .cta-heading { font-size: 22px !important; }
         }
       `}</style>
     </>

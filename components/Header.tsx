@@ -40,7 +40,7 @@ export default function Header() {
             alt="Editorial Thinking COLLECTIVE"
             width={240}
             height={72}
-            style={{ objectFit: "contain", height: "40px", width: "auto" }}
+            style={{ objectFit: "contain", height: "28px", width: "auto" }}
             priority
           />
         </Link>
