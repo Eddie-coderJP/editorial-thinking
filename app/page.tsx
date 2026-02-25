@@ -60,7 +60,7 @@ export default async function HomePage() {
             コミュニティに参加する
           </Link>
         </div>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }} className="hero-image">
           <img
             src="/images/hero_illustration.png"
             alt="編集思考イラスト"
@@ -70,8 +70,8 @@ export default async function HomePage() {
       </section>
 
       {/* 3 COLUMNS */}
-      <section style={{ background: "var(--white)", padding: "80px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "32px", maxWidth: "1100px", margin: "0 auto" }}>
+      <section style={{ background: "var(--white)", padding: "80px" }} className="section-pad">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "32px", maxWidth: "1100px", margin: "0 auto" }} className="grid-3col">
           {[
             {
               label: "Editorial Thinking",
@@ -116,9 +116,9 @@ export default async function HomePage() {
       </section>
 
       {/* LATEST COLUMNS */}
-      <section style={{ background: "var(--bg)", padding: "80px" }}>
+      <section style={{ background: "var(--bg)", padding: "80px" }} className="section-pad">
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "40px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "40px" }} className="latest-header">
             <div>
               <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--accent)", fontWeight: 700, marginBottom: "6px" }}>Latest</p>
               <h2 style={{ fontFamily: "'Noto Serif JP', serif", fontSize: "28px", fontWeight: 700 }}>最新コラム</h2>
@@ -128,7 +128,7 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px" }} className="grid-3col">
             {latestArticles.length > 0 ? latestArticles.map((article) => (
               <Link key={article.id} href={`/column/${article.slug}`} style={{ textDecoration: "none", color: "inherit" }}>
                 <div style={{ background: "var(--white)", border: "1px solid var(--border)", borderRadius: "10px", overflow: "hidden" }}>
@@ -165,7 +165,7 @@ export default async function HomePage() {
       </section>
 
       {/* ABOUT */}
-      <section style={{ background: "var(--white)", padding: "80px" }}>
+      <section style={{ background: "var(--white)", padding: "80px" }} className="section-pad">
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--accent)", fontWeight: 700, marginBottom: "48px" }}>About</p>
           <div style={{ borderBottom: "1px solid var(--border)", paddingBottom: "56px", marginBottom: "56px" }}>
@@ -175,7 +175,7 @@ export default async function HomePage() {
               「編集思考」を軸に、書く・伝える・届けるを実践するコミュニティです。編集者の視点から生まれたフレームワークを使い、個人が自分の強みを武器に変え、世界に届ける力を育てます。オンラインコース、ライブ配信、そしてメンバー同士の対話を通じて、「じぶんを編集する」旅をともに歩みます。
             </p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "200px 1fr", gap: "48px", alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "200px 1fr", gap: "48px", alignItems: "start" }} className="profile-grid">
             <div style={{ width: "160px", height: "160px", borderRadius: "50%", background: "#F2EDE4", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", alignItems: "flex-start" }}>
                 <div style={{ width: "56px", height: "7px", background: "#C1403D", borderRadius: "1px" }}></div>
@@ -207,7 +207,7 @@ export default async function HomePage() {
       </section>
 
       {/* CTA */}
-      <section style={{ background: "var(--footer)", color: "white", padding: "80px", textAlign: "center" }}>
+      <section style={{ background: "var(--footer)", color: "white", padding: "80px", textAlign: "center" }} className="cta-section">
         <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: "16px" }}>Community</p>
         <h2 style={{ fontFamily: "'Noto Serif JP', serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 700, marginBottom: "20px", lineHeight: 1.5 }}>
           「じぶんを編集する学校」へ<br />ようこそ
@@ -236,7 +236,14 @@ export default async function HomePage() {
           .hero-section {
             grid-template-columns: 1fr !important;
             padding: 40px 24px !important;
+            min-height: auto !important;
           }
+          .hero-image { display: none !important; }
+          .section-pad { padding: 48px 24px !important; }
+          .grid-3col { grid-template-columns: 1fr !important; gap: 16px !important; }
+          .latest-header { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
+          .profile-grid { grid-template-columns: 1fr !important; }
+          .cta-section { padding: 48px 24px !important; }
         }
       `}</style>
     </>

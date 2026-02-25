@@ -46,10 +46,11 @@ export default function Footer() {
             </div>
             <div>
               <h4 style={{ fontSize: "11px", letterSpacing: "0.15em", color: "rgba(255,255,255,0.5)", marginBottom: "16px", textTransform: "uppercase" }}>
-                CONTACT
+                OPERATOR
               </h4>
               <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.7)", lineHeight: 2 }}>
-                info@editbrain.co.jp
+                運営：株式会社エディットブレイン<br />
+                <a href="http://editbrain.co.jp" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: "12px" }}>editbrain.co.jp</a>
               </p>
             </div>
           </div>
