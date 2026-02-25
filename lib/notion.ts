@@ -19,6 +19,7 @@ export type Article = {
   publishedAt: string;
   excerpt: string;
   coverImage: string;
+  unlisted: boolean;
 };
 
 function getRichTextContent(richText: RichTextItemResponse[]): string {
@@ -29,8 +30,10 @@ export async function getArticles(): Promise<Article[]> {
   const response = await notion.databases.query({
     database_id: DATABASE_ID,
     filter: {
-      property: "Published",
-      checkbox: { equals: true },
+      and: [
+        { property: "Published", checkbox: { equals: true } },
+        { property: "Unlisted", checkbox: { equals: false } },
+      ],
     },
     sorts: [{ property: "PublishedAt", direction: "descending" }],
   });
@@ -58,7 +61,8 @@ export async function getArticles(): Promise<Article[]> {
       const coverImage =
         props.CoverImage?.url ?? "";
 
-      return { id: page.id, title, slug, category, publishedAt, excerpt, coverImage };
+      const unlisted = props.Unlisted?.checkbox ?? false;
+      return { id: page.id, title, slug, category, publishedAt, excerpt, coverImage, unlisted };
     });
 }
 
@@ -69,6 +73,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
       and: [
         { property: "Slug", rich_text: { equals: slug } },
         { property: "Published", checkbox: { equals: true } },
+        // Unlisted記事もURLを知っていればアクセス可能（フィルターしない）
       ],
     },
   });
@@ -90,8 +95,9 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
       ? getRichTextContent(props.Excerpt.rich_text)
       : "";
   const coverImage = props.CoverImage?.url ?? "";
+  const unlisted = props.Unlisted?.checkbox ?? false;
 
-  return { id: page.id, title, slug, category, publishedAt, excerpt, coverImage };
+  return { id: page.id, title, slug, category, publishedAt, excerpt, coverImage, unlisted };
 }
 
 export async function getPageBlocks(pageId: string): Promise<BlockObjectResponse[]> {

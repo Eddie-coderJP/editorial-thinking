@@ -24,8 +24,13 @@ export default async function ArticlePage({ params }: { params: { slug: string }
         justifyContent: "flex-end",
       }}>
         <div style={{ maxWidth: "800px", margin: "0 auto", width: "100%" }}>
+          {article.unlisted && (
+            <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "rgba(193,64,61,0.85)", color: "white", fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", padding: "5px 12px", borderRadius: "4px", marginBottom: "16px", textTransform: "uppercase" }}>
+              <span>🔒</span> URLを知っている方限定の記事です
+            </div>
+          )}
           {article.category && (
-            <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: "16px" }}>
+            <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: article.unlisted ? "8px" : "16px" }}>
               {article.category}
             </p>
           )}
