@@ -10,7 +10,7 @@ export default function Footer() {
           <div style={{ flex: "1", minWidth: "240px" }}>
             <div style={{ marginBottom: "16px" }}>
               <Image
-                src="/images/logo_white_trimmed.png"
+                src="/logo_footer.png"
                 alt="Editorial Thinking COLLECTIVE"
                 width={180}
                 height={54}
