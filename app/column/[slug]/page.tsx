@@ -2,7 +2,7 @@ import { getArticleBySlug, getPageBlocks, renderBlocks } from "@/lib/notion";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-export const revalidate = 3600;
+export const revalidate = 0;
 
 export default async function ArticlePage({ params }: { params: { slug: string } }) {
   const article = await getArticleBySlug(params.slug).catch(() => null);
