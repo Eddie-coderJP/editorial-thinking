@@ -4,8 +4,9 @@ import { notFound } from "next/navigation";
 
 export const revalidate = 0;
 
-export default async function ArticlePage({ params }: { params: { slug: string } }) {
-  const article = await getArticleBySlug(params.slug).catch(() => null);
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug).catch(() => null);
   if (!article) notFound();
 
   const blocks = await getPageBlocks(article.id).catch(() => []);
@@ -22,7 +23,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-end",
-      }}>
+      }} className="article-hero">
         <div style={{ maxWidth: "800px", margin: "0 auto", width: "100%" }}>
           {article.unlisted && (
             <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "rgba(193,64,61,0.85)", color: "white", fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", padding: "5px 12px", borderRadius: "4px", marginBottom: "16px", textTransform: "uppercase" }}>
@@ -65,6 +66,13 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           </Link>
         </div>
       </article>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .article-hero { padding: 40px 24px !important; }
+          .article-body p, .article-body li { font-size: 15px; line-height: 1.9; }
+        }
+      `}</style>
     </>
   );
 }
