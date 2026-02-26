@@ -1,8 +1,26 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "About | Editorial Thinking Collective",
-  description: "編集思考とは何か。UENO IKue（Eddie）が25年の編集者経験から体系化した思考フレームワーク。",
+export const metadata: Metadata = {
+  title: "About",
+  description: "編集思考とは何か。UENO Ikue（Eddie）が25年の編集者経験から体系化した思考フレームワーク。エディトリアル・コンサルタントとしての活動紹介。",
+  alternates: {
+    canonical: "https://editorialthinking.com/about",
+  },
+  openGraph: {
+    title: "About | Editorial Thinking Collective",
+    description: "編集思考とは何か。UENO Ikue（Eddie）が25年の編集者経験から体系化した思考フレームワーク。",
+    url: "https://editorialthinking.com/about",
+    type: "website",
+    images: [
+      {
+        url: "https://editorialthinking.com/images/ogp_default.png",
+        width: 1200,
+        height: 630,
+        alt: "About | Editorial Thinking Collective",
+      },
+    ],
+  },
 };
 
 export default function AboutPage() {

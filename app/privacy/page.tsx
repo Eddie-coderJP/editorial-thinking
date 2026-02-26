@@ -1,3 +1,20 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "プライバシーポリシー",
+  description: "Editorial Thinking Collectiveのプライバシーポリシー。個人情報の収集・利用・管理方法について定めています。",
+  alternates: {
+    canonical: "https://editorialthinking.com/privacy",
+  },
+  openGraph: {
+    title: "プライバシーポリシー | Editorial Thinking Collective",
+    description: "Editorial Thinking Collectiveのプライバシーポリシー。",
+    url: "https://editorialthinking.com/privacy",
+    type: "website",
+  },
+  robots: { index: false, follow: false },
+};
+
 export default function PrivacyPage() {
   return (
     <>

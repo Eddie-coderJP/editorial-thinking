@@ -1,11 +1,29 @@
 import Link from "next/link";
 import { getArticles } from "@/lib/notion";
+import type { Metadata } from "next";
 
 export const revalidate = 0;
 
-export const metadata = {
-  title: "Column | Editorial Thinking Collective",
-  description: "編集思考・文章術・Kindle出版・ブランディング・生成AIをテーマに、実践的な知見をお届けします。",
+export const metadata: Metadata = {
+  title: "Column",
+  description: "編集思考・文章術・Kindle出版・ブランディング・SNS戦略・生成AIをテーマに、実践的な知見をお届けします。",
+  alternates: {
+    canonical: "https://editorialthinking.com/column",
+  },
+  openGraph: {
+    title: "Column | Editorial Thinking Collective",
+    description: "編集思考・文章術・Kindle出版・ブランディング・SNS戦略・生成AIをテーマに、実践的な知見をお届けします。",
+    url: "https://editorialthinking.com/column",
+    type: "website",
+    images: [
+      {
+        url: "https://editorialthinking.com/images/ogp_default.png",
+        width: 1200,
+        height: 630,
+        alt: "Column | Editorial Thinking Collective",
+      },
+    ],
+  },
 };
 
 export default async function ColumnPage() {

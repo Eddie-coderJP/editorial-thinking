@@ -1,3 +1,20 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "利用規約",
+  description: "Editorial Thinking Collectiveの利用規約。コミュニティ利用条件、投稿コンテンツの著作権、禁止事項などを定めています。",
+  alternates: {
+    canonical: "https://editorialthinking.com/terms",
+  },
+  openGraph: {
+    title: "利用規約 | Editorial Thinking Collective",
+    description: "Editorial Thinking Collectiveの利用規約。",
+    url: "https://editorialthinking.com/terms",
+    type: "website",
+  },
+  robots: { index: false, follow: false },
+};
+
 export default function TermsPage() {
   return (
     <>

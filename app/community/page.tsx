@@ -1,8 +1,26 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "Community | Editorial Thinking Collective",
-  description: "じぶんを編集する学校。強みを武器にして、稼ぐ力をつける。",
+export const metadata: Metadata = {
+  title: "Community",
+  description: "じぶんを編集する学校。編集思考を身につけて、強みを武器にして、稼ぐ力をつけるコミュニティ。",
+  alternates: {
+    canonical: "https://editorialthinking.com/community",
+  },
+  openGraph: {
+    title: "Community | Editorial Thinking Collective",
+    description: "じぶんを編集する学校。編集思考を身につけて、強みを武器にして、稼ぐ力をつけるコミュニティ。",
+    url: "https://editorialthinking.com/community",
+    type: "website",
+    images: [
+      {
+        url: "https://editorialthinking.com/images/ogp_default.png",
+        width: 1200,
+        height: 630,
+        alt: "Community | Editorial Thinking Collective",
+      },
+    ],
+  },
 };
 
 export default function CommunityPage() {

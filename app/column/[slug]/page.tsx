@@ -1,8 +1,68 @@
 import { getArticleBySlug, getPageBlocks, renderBlocks } from "@/lib/notion";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 
 export const revalidate = 0;
+
+const SITE_URL = "https://editorialthinking.com";
+const SITE_NAME = "Editorial Thinking Collective";
+const DEFAULT_OGP = `${SITE_URL}/images/ogp_default.png`;
+
+// 記事ごとの動的メタタグ生成
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug).catch(() => null);
+  if (!article) {
+    return {
+      title: "記事が見つかりません",
+    };
+  }
+
+  const title = article.title;
+  const description = article.excerpt || `${SITE_NAME}のコラム記事`;
+  const ogImage = article.coverImage || DEFAULT_OGP;
+  const canonicalUrl = `${SITE_URL}/column/${slug}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonicalUrl,
+      siteName: SITE_NAME,
+      locale: "ja_JP",
+      type: "article",
+      publishedTime: article.publishedAt,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+    // Unlistedの記事は検索エンジンにインデックスさせない
+    robots: article.unlisted
+      ? { index: false, follow: false }
+      : { index: true, follow: true },
+  };
+}
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -12,8 +72,41 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const blocks = await getPageBlocks(article.id).catch(() => []);
   const bodyHtml = renderBlocks(blocks);
 
+  // JSON-LD 構造化データ（Article）
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.excerpt || "",
+    image: article.coverImage || `${SITE_URL}/images/ogp_default.png`,
+    datePublished: article.publishedAt,
+    author: {
+      "@type": "Person",
+      name: "UENO Ikue (Eddie)",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/images/logo_red_bright.png`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/column/${slug}`,
+    },
+  };
+
   return (
     <>
+      {/* JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+
       {/* HERO */}
       <section style={{
         background: "var(--footer)",
