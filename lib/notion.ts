@@ -26,6 +26,26 @@ function getRichTextContent(richText: RichTextItemResponse[]): string {
   return richText.map((t) => t.plain_text).join("");
 }
 
+function renderRichText(richText: RichTextItemResponse[]): string {
+  if (!richText || richText.length === 0) return "";
+  return richText
+    .map((t) => {
+      let text = t.plain_text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\n/g, "<br>");
+      if (t.annotations?.bold) text = `<strong>${text}</strong>`;
+      if (t.annotations?.italic) text = `<em>${text}</em>`;
+      if (t.annotations?.code) text = `<code>${text}</code>`;
+      if (t.annotations?.strikethrough) text = `<s>${text}</s>`;
+      if (t.annotations?.underline) text = `<u>${text}</u>`;
+      if ((t as any).href) text = `<a href="${(t as any).href}" target="_blank" rel="noopener">${text}</a>`;
+      return text;
+    })
+    .join("");
+}
+
 export async function getArticles(): Promise<Article[]> {
   const response = await notion.databases.query({
     database_id: DATABASE_ID,
@@ -130,45 +150,33 @@ export function renderBlocks(blocks: BlockObjectResponse[]): string {
     .map((block) => {
       switch (block.type) {
         case "paragraph": {
-          const text = getRichTextContent(
-            (block as any).paragraph.rich_text
-          );
+          const richText = (block as any).paragraph.rich_text;
+          if (!richText || richText.length === 0) return `<p>&nbsp;</p>`;
+          const text = renderRichText(richText);
           return `<p>${text}</p>`;
         }
         case "heading_1": {
-          const text = getRichTextContent(
-            (block as any).heading_1.rich_text
-          );
+          const text = renderRichText((block as any).heading_1.rich_text);
           return `<h1>${text}</h1>`;
         }
         case "heading_2": {
-          const text = getRichTextContent(
-            (block as any).heading_2.rich_text
-          );
+          const text = renderRichText((block as any).heading_2.rich_text);
           return `<h2>${text}</h2>`;
         }
         case "heading_3": {
-          const text = getRichTextContent(
-            (block as any).heading_3.rich_text
-          );
+          const text = renderRichText((block as any).heading_3.rich_text);
           return `<h3>${text}</h3>`;
         }
         case "bulleted_list_item": {
-          const text = getRichTextContent(
-            (block as any).bulleted_list_item.rich_text
-          );
+          const text = renderRichText((block as any).bulleted_list_item.rich_text);
           return `<li>${text}</li>`;
         }
         case "numbered_list_item": {
-          const text = getRichTextContent(
-            (block as any).numbered_list_item.rich_text
-          );
+          const text = renderRichText((block as any).numbered_list_item.rich_text);
           return `<li>${text}</li>`;
         }
         case "quote": {
-          const text = getRichTextContent(
-            (block as any).quote.rich_text
-          );
+          const text = renderRichText((block as any).quote.rich_text);
           return `<blockquote>${text}</blockquote>`;
         }
         case "image": {
