@@ -59,7 +59,8 @@ export async function getArticles(): Promise<Article[]> {
           ? getRichTextContent(props.Excerpt.rich_text)
           : "";
       const coverImage =
-        props.CoverImage?.url ?? "";
+        props.CoverImage?.url ?? 
+        (props.CoverImage?.rich_text?.length > 0 ? getRichTextContent(props.CoverImage.rich_text) : "");
 
       const unlisted = props.Unlisted?.checkbox ?? false;
       return { id: page.id, title, slug, category, publishedAt, excerpt, coverImage, unlisted };
@@ -94,7 +95,8 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
     props.Excerpt?.rich_text?.length > 0
       ? getRichTextContent(props.Excerpt.rich_text)
       : "";
-  const coverImage = props.CoverImage?.url ?? "";
+  const coverImage = props.CoverImage?.url ?? 
+    (props.CoverImage?.rich_text?.length > 0 ? getRichTextContent(props.CoverImage.rich_text) : "");
   const unlisted = props.Unlisted?.checkbox ?? false;
 
   return { id: page.id, title, slug, category, publishedAt, excerpt, coverImage, unlisted };
