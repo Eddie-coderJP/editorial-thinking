@@ -64,6 +64,7 @@ export default function CommunityPage() {
             fontWeight: 700,
             textDecoration: "none",
             letterSpacing: "0.04em",
+            whiteSpace: "nowrap",
           }}>
             LINEで無料登録する
           </a>
@@ -72,10 +73,11 @@ export default function CommunityPage() {
 
       {/* ABOUT COMMUNITY */}
       <section style={{ background: "var(--white)", padding: "80px 40px" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px" }}>
+        {/* スマホで縦積み */}
+        <div className="community-about-grid">
           <div>
             <p style={{ fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--accent)", fontWeight: 700, marginBottom: "16px" }}>About</p>
-            <h2 style={{ fontFamily: "'Noto Serif JP', serif", fontSize: "28px", fontWeight: 700, marginBottom: "24px" }}>「じぶんを編集する学校」とは</h2>
+            <h2 style={{ fontFamily: "'Noto Serif JP', serif", fontSize: "clamp(22px, 3vw, 28px)", fontWeight: 700, marginBottom: "24px", lineHeight: 1.4 }}>「じぶんを編集する学校」とは</h2>
             <p style={{ fontSize: "15px", color: "var(--muted)", lineHeight: 1.9, marginBottom: "16px" }}>
               「編集思考」を軸に、あなたの強みを言語化し、Kindle出版・ブランディング・SNS戦略を通じて社会に届ける力を育む学びのコミュニティです。
             </p>
@@ -109,7 +111,8 @@ export default function CommunityPage() {
           <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--accent)", fontWeight: 700, textAlign: "center", marginBottom: "12px" }}>Journey</p>
           <h2 style={{ fontFamily: "'Noto Serif JP', serif", fontSize: "28px", fontWeight: 700, textAlign: "center", marginBottom: "12px" }}>4つのステップ</h2>
           <p style={{ fontSize: "14px", color: "var(--muted)", textAlign: "center", marginBottom: "48px" }}>入学から卒業まで、段階的に強みを育てます。</p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "24px" }}>
+          {/* スマホで縦積み（2カラム） */}
+          <div className="steps-grid">
             {[
               { num: "01", step: "STEP 1", title: "入学", desc: "自分の「編集」がわかりはじめる。強みの棚卸しワークでスタート。" },
               { num: "02", step: "STEP 2", title: "実践", desc: "強みを「武器」として使い始める。講座・Kindle・情報発信などで試す。" },
@@ -133,7 +136,8 @@ export default function CommunityPage() {
           <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--accent)", fontWeight: 700, textAlign: "center", marginBottom: "12px" }}>Contents</p>
           <h2 style={{ fontFamily: "'Noto Serif JP', serif", fontSize: "28px", fontWeight: 700, textAlign: "center", marginBottom: "12px" }}>コミュニティで得られること</h2>
           <p style={{ fontSize: "14px", color: "var(--muted)", textAlign: "center", marginBottom: "48px" }}>月2回のライブ配信を中心に、多彩なコンテンツをお届けします（予定）。</p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px" }}>
+          {/* スマホで縦積み（1カラム） */}
+          <div className="contents-grid">
             {[
               { icon: "🎥", title: "ライブ配信（月2回）", desc: "強みの棚卸しワーク・フィードバック・コーチング。メンバー同士の内輪の対話も。" },
               { icon: "📹", title: "動画コンテンツ（月2回）", desc: "副業デザイン講座・Kindle出版講座など。講座修了後に「次回講座」を設定。" },
@@ -168,6 +172,7 @@ export default function CommunityPage() {
           fontSize: "16px",
           fontWeight: 700,
           textDecoration: "none",
+          whiteSpace: "nowrap",
         }}>
           LINEで無料登録する
         </a>
@@ -194,6 +199,43 @@ export default function CommunityPage() {
           </div>
         </div>
       </section>
+
+      <style>{`
+        /* About: 2カラム → スマホで縦積み */
+        .community-about-grid {
+          max-width: 1100px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 64px;
+        }
+        /* Steps: 4カラム → スマホで2カラム */
+        .steps-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
+        }
+        /* Contents: 3カラム → スマホで1カラム */
+        .contents-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+        }
+        @media (max-width: 768px) {
+          .community-about-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+          }
+          .steps-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+          }
+          .contents-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+          }
+        }
+      `}</style>
     </>
   );
 }
