@@ -65,8 +65,11 @@ export const metadata: Metadata = {
     creator: "@editbrain",
   },
   icons: {
-    icon: "/images/logo_red_trimmed.png",
-    apple: "/images/logo_red_trimmed.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" },
+      { url: "/images/favicon.png", sizes: "64x64", type: "image/png" },
+    ],
+    apple: "/images/apple-touch-icon.png",
   },
   verification: {
     // google: "your-google-site-verification-code", // Google Search Console設定後に追加
